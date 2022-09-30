@@ -31,7 +31,7 @@ app.get('/signupsubmit', (req, res) => {
     const password = req.query.passwrd;
     
     //Adding data to the collection
-    // sample comments
+    // sample comment
     db.collection('users')
     .add({
         name: full_name + last_name,
