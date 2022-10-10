@@ -23,15 +23,9 @@
 
         header{
             padding:1rem; 
-            text-align: center;
-            background-color: var(--primary-color);
-        }
-
-      .intro{
-            padding:0.1rem 1rem;
-            display: flex;
-            justify-content: flex-start;
-            color: white;
+            display:flex;
+            justify-content: flex-end;
+            background-color: var(--color1);
         }
 
         .search{
@@ -54,7 +48,16 @@
             color: #7378c5;
         }
 
+
+        .intro{
+            padding:0.1rem 1rem;
+            display: flex;
+            justify-content: flex-start;
+            color: white;
+        }
+
         main{
+            background-color: var;
             display:flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -117,14 +120,12 @@
     </style>
 </head>
 <body>
-    <h2 class="intro">Hey Hello ! ,You have Successfully Logined IN.</h2>
-        <% for(var i=0;i<userData.length;i++) { %>
-           <h3 class="intro">Welcome, <%= userData[i].name %> <br> </h3>
-        <% } %>
+    <h2 class="intro">Hey Hello ! ,<br>let's check for the information of the movie u wish for...</h2>
+    <br>
     <hr>
     <header>
         <div>
-            <p style="background-color: var(--color2) ;color: white">. . . . .\\\ Search the information of the movie u are wishing for at here ///. . . . .</p>
+            <!--<p style="background-color: var(--color2) ;color: white">. . . . .\\\ Search the information of the movie u are wishing for at here ///. . . . .</p>-->
             <form action="movienamesearch" method="GET">
                 <input type="text" placeholder="Search" name="moviename" class="search">
             </form>
@@ -132,52 +133,29 @@
         </div>
     </header>
 
-
     <main id="main">
-
-        
-        <div class="movie">
-            <img src="https://tse3.mm.bing.net/th/id/OIP.xg6XZQvrc-1pZBoEh5sgagHaKl?w=186&h=265&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Image">
+        <% for(var i=0; i<userData.length;i++) { %>
+            <div class="movie">
+                <img src= <%='https://image.tmdb.org/t/p/w500/'+userData[i].poster_path %>  alt="Image">
 
             <div class="movie-info"> 
-                <h3>RRR</h3>
-                <span class="green">3.9</span>
+                <h3><%= userData[i].title %></h3>
+                <span class="green"><%= userData[i].vote_average %></span>
             </div>
 
             <div class="overview">
-                A fearless revolutionary and an officer in the British force, who once shared a deep bond, decide to join forces and chart out an inspirational path of freedom against the despotic rulers.
+                <p>Relase Date: <%=userData[i].release_date %></p>
+                <p>Overview: <%=userData[i].overview %></p>
             </div>
         </div>
-
-        <div class="movie">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdATcGLKOuT9LOc4sDZqDEPEgBCJUljRIcSjcAAkRaEfrk6MG8NGkIAL26tWyue1oml0o&usqp=CAU" alt="Avatar">
-
-            <div class="movie-info"> 
-                <h3>AVATAR</h3>
-                <span class="green">4.6</span>
-            </div>
-
-            <div class="overview">
-                On the lush alien world of Pandora live the Na'vi, beings who appear primitive but are highly evolved. Because the planet's environment is poisonous, human/Na'vi hybrids, called Avatars, must link to human minds to allow for free movement on Pandora. Jake Sully (Sam Worthington), a paralyzed former Marine, becomes mobile again through one such Avatar and falls in love with a Na'vi woman (Zoe Saldana). As a bond with her grows, he is drawn into a battle for the survival of her world.
-            </div>
-        </div>
-
-        <div class="movie">
-            <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg" alt="Avengers">
-
-            <div class="movie-info"> 
-                <h3>AVENGERS</h3>
-                <span class="green">4.7</span>
-            </div>
-
-            <div class="overview">
-                Adrift in space with no food or water, Tony Stark sends a message to Pepper Potts as his oxygen supply starts to dwindle. Meanwhile, the remaining Avengers -- Thor, Black Widow, Captain America and Bruce Banner -- must figure out a way to bring back their vanquished allies for an epic showdown with Thanos -- the evil demigod who decimated the planet and the universe.
-            </div>
-        </div> 
+        <% } %>
     </main> 
 
     <div style="text-align:center">
-        <p style="background-color: var(--color2) ;color: white">. . . . .\\\ This is the movies App I created with knowledge I aquired from this course ///. . . . .</p>
+        <p style="background-color: var(--color2) ;color: white">. . . . .\\\ Finally this is the project I created using node.js, express.js, noSQL(google firebase) and Movies API. ///. . . . .</p>
+        <a href="http://localhost:3000/end">
+            <button>Click Here</button>
+        </a>
     </div>
     </body>
 </html>
