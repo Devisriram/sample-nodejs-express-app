@@ -101,7 +101,6 @@ const searchURL = BASE_URL + '/search/movie?'+API_KEY;
     const moviename = req.query.moviename;
     var movieData = []
 
-//    getMovies(API_URL);
     var url;
     if(moviename){
         url = searchURL+'&query='+moviename;
@@ -112,7 +111,6 @@ const searchURL = BASE_URL + '/search/movie?'+API_KEY;
     request(url , function(error,response,body){
         var data = JSON.parse(body).results;
         if(data){
-            //console.log(JSON.parse(body).results);
             showMovies(data);
             
             function showMovies(data) { 
@@ -122,65 +120,13 @@ const searchURL = BASE_URL + '/search/movie?'+API_KEY;
             }
             console.log(movieData);
             res.render('movie', {userData: movieData},);
-            //const ejs = require('ejs');
-            //const html = await ejs.renderFile('movie', {userData: movieData}, {async: true});
-            //res.send(html);
+
         }
         else{
             console.log("not thier");
         }
     })
 })
-
-   /* function getMovies(url){
-
-        fetch(url).then(ans => ans.json()).then(data => {
-            console.log(data.results)
-            showMovies(data.results);
-        })
-    }
-    function showMovies(data) { 
-        data.forEach(movie => {
-            var innerdata = []
-            innerdata.push(movie.title);
-            innerdata.push(movie.poster_path);
-            innerdata.push(movie.vote_average);
-            innerdata.push(movie.overview);
-            movieData.push(movie.innerdata);
-        })
-    }
-    console.log(moviename);
-
-    if(moviename){
-        getMovies(searchURL+'&query='+moviename);
-    }else{
-        getMovies(API_URL);
-    }
-    request()
- })*/
- /*app.get("/movienamesearch",(req,res)=>{
-    const moviename= req.query.moviename;
-    request("https://www.omdbapi.com/?t="+moviename+"&apikey=3389068b",function(error,response,body){
-        if(JSON.parse(body).Response=="True"){
-            var movieData = [];
-            movieData.push(JSON.parse(body).Director);
-            movieData.push(JSON.parse(body).Title);
-            movieData.push(JSON.parse(body).Actors);
-            movieData.push(JSON.parse(body).Ratings);
-            movieData.push(JSON.parse(body).Poster);
-            movieData.push(JSON.parse(body).Country);
-            movieData.push(JSON.parse(body).Awards);
-            movieData.push(JSON.parse(body).imdbRating);
-            movieData.push(JSON.parse(body).Plot);
-            console.log(movieData)
-            res.render('movie', {userData: movieData},);
-            }
-        else{
-            res.send("movienameincorrect");
-        }
-    })
-})*/
-
 app.listen(port, () => {
     console.log(`Your APP is running in the port ${port}`);
 })
